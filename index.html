@@ -1,0 +1,2389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WDYBI Personal Shopping | Curation, Not Confusion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #C4A962;
+            --primary-dark: #9D8040;
+            --secondary: #2C2C2C;
+            --accent: #E8D7B8;
+            --text: #333333;
+            --text-light: #666666;
+            --bg: #FFFFFF;
+            --bg-light: #F8F6F3;
+            --success: #4CAF50;
+            --warning: #FF9800;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: var(--secondary);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero .tagline {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
+        }
+
+        .founder-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 2rem auto;
+            border: 5px solid var(--primary);
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .cta-primary {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--secondary);
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(196, 169, 98, 0.3);
+        }
+
+        .cta-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(196, 169, 98, 0.4);
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--secondary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+        }
+
+        .service-card h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card .price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--secondary);
+            margin: 1rem 0;
+        }
+
+        .service-card ul {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .service-card ul li:before {
+            content: "✓ ";
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .cta-secondary {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+
+        .cta-secondary:hover {
+            background: var(--primary);
+            color: var(--secondary);
+        }
+
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        /* Payment Integration Styles */
+        .payment-section {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .payment-info {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        .payment-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .payment-btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .payfast-btn {
+            background: #FF6B00;
+            color: white;
+        }
+
+        .stripe-btn {
+            background: #635BFF;
+            color: white;
+        }
+
+        .payment-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Logistics Module */
+        .logistics-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .courier-option {
+            background: white;
+            border: 3px solid transparent;
+            border-radius: 10px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .courier-option:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .courier-option.selected {
+            border-color: var(--primary);
+            background: var(--bg-light);
+        }
+
+        .courier-icon {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .courier-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--secondary);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .courier-tag {
+            text-align: center;
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .courier-details {
+            margin: 1rem 0;
+        }
+
+        .courier-details p {
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .risk-disclaimer {
+            background: #FFF3CD;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+
+        /* Booking Form Styles */
+        .booking-form {
+            max-width: 700px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            color: var(--secondary);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Price Calculator */
+        .price-calculator {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .calc-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .calc-row:last-child {
+            border-bottom: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        /* Instagram Feed */
+        .instagram-feed {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .insta-post {
+            aspect-ratio: 1;
+            background: var(--accent);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .insta-post:hover {
+            transform: scale(1.05);
+        }
+
+        .insta-post-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        /* Calendar Integration */
+        .calendar-embed {
+            width: 100%;
+            min-height: 600px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Newsletter Signup */
+        .newsletter-section {
+            background: var(--primary);
+            color: var(--secondary);
+            padding: 3rem 2rem;
+            border-radius: 10px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 1.5rem auto;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            min-width: 200px;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .newsletter-form button {
+            padding: 1rem 2rem;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Success Messages */
+        .success-message {
+            background: var(--success);
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            border: 4px solid var(--bg-light);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+            display: none;
+        }
+
+        .spinner.show {
+            display: block;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Testimonial Styles */
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary);
+            margin-top: 1rem;
+        }
+
+        /* FAQ Styles */
+        .faq-item {
+            background: white;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-answer {
+            color: var(--text-light);
+            display: none;
+            padding-top: 1rem;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">WDYBI</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" onclick="showPage('about')">About</a></li>
+                <li><a href="#" onclick="showPage('services')">Services</a></li>
+                <li><a href="#" onclick="showPage('logistics')">Logistics</a></li>
+                <li><a href="#" onclick="showPage('testimonials')">Testimonials</a></li>
+                <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page-section active">
+        <section class="hero">
+            <div class="container">
+                <h1>Curation, Not Confusion.<br>Your Digital Mall at Your Convenience.</h1>
+                <p class="tagline">Expert Personal Shopping and Styling powered by Sheisbigsteppa</p>
+                <div class="founder-image">👗</div>
+                <a href="#" onclick="showPage('tier1-payment')" class="cta-primary">Convert Curiosity: Book Your R50 Quick Consult Now</a>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Why WDYBI?</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>🎯 Curated Expertise</h3>
+                        <p>Stop drowning in options. Get personalized recommendations from a professional stylist who understands South African fashion and your unique needs.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>⏱️ Time is Money</h3>
+                        <p>For busy professionals and diaspora clients, we navigate the malls, SHEIN catalogs, and beauty supply stores so you don't have to.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>🌍 Diaspora-Friendly</h3>
+                        <p>Supporting family back home? We handle the shopping, sourcing, and shipping from our Pretoria hub to anywhere in South Africa.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Our Service Tiers</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>Tier 1: Quick Consults</h3>
+                        <div class="price">R50</div>
+                        <p>Fast fashion advice via WhatsApp or Zoom. Get instant expert guidance for your shopping dilemmas.</p>
+                        <a href="#" onclick="showPage('tier1-payment')" class="cta-secondary">Book Now</a>
+                    </div>
+                    <div class="service-card">
+                        <h3>Tier 2: Runner Services</h3>
+                        <div class="price">R100-R150</div>
+                        <p>We browse the malls for you. Send us your wish list and budget, we'll do the legwork.</p>
+                        <a href="#" onclick="showPage('tier2-booking')" class="cta-secondary">Request Service</a>
+                    </div>
+                    <div class="service-card">
+                        <h3>Tier 3: Niche Authority</h3>
+                        <div class="price">R100-R250</div>
+                        <p>Specialist services: Wig & hair sourcing (15-25% commission) and SHEIN Navigator.</p>
+                        <a href="#" onclick="showPage('tier3-booking')" class="cta-secondary">Get Started</a>
+                    </div>
+                    <div class="service-card">
+                        <h3>Tier 4: Premium Transformation</h3>
+                        <div class="price">From R750</div>
+                        <p>Wardrobe revamps, event styling, and trip packing. High-touch, personalized service.</p>
+                        <a href="#" onclick="showPage('tier4-booking')" class="cta-secondary">Request Quote</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Instagram Feed Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Follow @sheisbigsteppa</h2>
+                <p style="text-align: center; margin-bottom: 2rem; color: var(--text-light);">Daily styling inspiration and client transformations</p>
+                <div class="instagram-feed">
+                    <div class="insta-post">
+                        <div class="insta-post-placeholder">📸</div>
+                    </div>
+                    <div class="insta-post">
+                        <div class="insta-post-placeholder">👗</div>
+                    </div>
+                    <div class="insta-post">
+                        <div class="insta-post-placeholder">👠</div>
+                    </div>
+                    <div class="insta-post">
+                        <div class="insta-post-placeholder">💼</div>
+                    </div>
+                    <div class="insta-post">
+                        <div class="insta-post-placeholder">✨</div>
+                    </div>
+                    <div class="insta-post">
+                        <div class="insta-post-placeholder">🛍️</div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="https://instagram.com/sheisbigsteppa" target="_blank" class="cta-secondary">Follow on Instagram</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="section">
+            <div class="container">
+                <div class="newsletter-section">
+                    <h2 style="margin-bottom: 1rem;">Join Our Style Community</h2>
+                    <p>Get exclusive styling tips, early access to services, and special offers</p>
+                    <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <div id="newsletter-success" class="success-message">Thank you! Check your email to confirm your subscription.</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- TIER 1 PAYMENT PAGE -->
+    <div id="tier1-payment" class="page-section">
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Book Your R50 Quick Consult</h2>
+                
+                <div class="payment-section">
+                    <div class="payment-info">
+                        <h3 style="color: var(--primary); margin-bottom: 1rem;">What You'll Get:</h3>
+                        <ul style="list-style-position: inside;">
+                            <li>15-20 minute expert consultation</li>
+                            <li>Choose WhatsApp or Zoom</li>
+                            <li>Instant fashion advice</li>
+                            <li>Personalized recommendations</li>
+                        </ul>
+                    </div>
+
+                    <form id="tier1-form" onsubmit="processTier1Payment(event)">
+                        <div class="form-group">
+                            <label for="t1-name">Full Name *</label>
+                            <input type="text" id="t1-name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="t1-email">Email Address *</label>
+                            <input type="email" id="t1-email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="t1-phone">WhatsApp Number *</label>
+                            <input type="tel" id="t1-phone" required placeholder="+27">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="t1-consult-type">Consultation Type *</label>
+                            <select id="t1-consult-type" required>
+                                <option value="">-- Select Type --</option>
+                                <option value="whatsapp">WhatsApp Text Consult</option>
+                                <option value="zoom">Zoom Video Consult</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="t1-question">What do you need help with? *</label>
+                            <textarea id="t1-question" required placeholder="Briefly describe your styling question or challenge"></textarea>
+                        </div>
+
+                        <div class="price-calculator">
+                            <div class="calc-row">
+                                <span>Quick Consult Fee:</span>
+                                <span>R50.00</span>
+                            </div>
+                            <div class="calc-row">
+                                <span>Total to Pay:</span>
+                                <span>R50.00</span>
+                            </div>
+                        </div>
+
+                        <p style="font-size: 0.9rem; color: var(--text-light); margin: 1rem 0;">
+                            <strong>Non-refundable.</strong> After payment, you'll be redirected to schedule your consult.
+                        </p>
+
+                        <h3 style="margin: 1.5rem 0 1rem; text-align: center;">Choose Payment Method</h3>
+                        <div class="payment-buttons">
+                            <button type="button" class="payment-btn payfast-btn" onclick="processPayment('payfast')">
+                                💳 Pay with PayFast
+                            </button>
+                            <button type="button" class="payment-btn stripe-btn" onclick="processPayment('stripe')">
+                                💳 Pay with Stripe
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="spinner" id="payment-spinner"></div>
+                    <div class="success-message" id="payment-success">
+                        ✅ Payment successful! Redirecting to your consultation booking...
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- TIER 2 BOOKING PAGE -->
+    <div id="tier2-booking" class="page-section">
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Runner Service Request</h2>
+                
+                <div class="booking-form">
+                    <p style="text-align: center; margin-bottom: 2rem;">Let us do the mall browsing for you. We'll find what you need and send photos for approval.</p>
+
+                    <form onsubmit="submitTier2Request(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="t2-name">Full Name *</label>
+                                <input type="text" id="t2-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="t2-phone">WhatsApp Number *</label>
+                                <input type="tel" id="t2-phone" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="t2-email">Email Address *</label>
+                            <input type="email" id="t2-email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="t2-items">What are you looking for? *</label>
+                            <textarea id="t2-items" required placeholder="Describe the items you need (e.g., black formal shoes size 8, casual summer dresses)"></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="t2-budget">Budget for Items *</label>
+                                <input type="number" id="t2-budget" required placeholder="R">
+                            </div>
+                            <div class="form-group">
+                                <label for="t2-timeline">When do you need this? *</label>
+                                <select id="t2-timeline" required>
+                                    <option value="">-- Select Timeline --</option>
+                                    <option value="urgent">Urgent (1-2 days)</option>
+                                    <option value="normal">Normal (3-5 days)</option>
+                                    <option value="flexible">Flexible (1-2 weeks)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="t2-location">Delivery Location *</label>
+                            <input type="text" id="t2-location" required placeholder="City, Province">
+                        </div>
+
+                        <h3 style="margin: 2rem 0 1rem;">Select Your Courier</h3>
+                        <div class="logistics-selector">
+                            <div class="courier-option" onclick="selectCourier('paxi', this)">
+                                <div class="courier-icon">📦</div>
+                                <div class="courier-name">PAXI</div>
+                                <div class="courier-tag">Budget-Friendly</div>
+                                <div class="courier-details">
+                                    <p><strong>Delivery:</strong> 3-7 business days</p>
+                                    <p><strong>Cost:</strong> R60-R120</p>
+                                    <p><strong>Best for:</strong> Standard items, local delivery</p>
+                                </div>
+                            </div>
+
+                            <div class="courier-option" onclick="selectCourier('mukuru', this)">
+                                <div class="courier-icon">🌍</div>
+                                <div class="courier-name">Mukuru</div>
+                                <div class="courier-tag">Diaspora Specialist</div>
+                                <div class="courier-details">
+                                    <p><strong>Delivery:</strong> 2-5 business days</p>
+                                    <p><strong>Cost:</strong> Varies by location</p>
+                                    <p><strong>Best for:</strong> Supporting family back home</p>
+                                </div>
+                            </div>
+
+                            <div class="courier-option" onclick="selectCourier('aramex', this)">
+                                <div class="courier-icon">✈️</div>
+                                <div class="courier-name">Aramex</div>
+                                <div class="courier-tag">Premium Service</div>
+                                <div class="courier-details">
+                                    <p><strong>Delivery:</strong> 1-3 business days</p>
+                                    <p><strong>Cost:</strong> From R150+</p>
+                                    <p><strong>Best for:</strong> Fast tracked delivery</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="risk-disclaimer">
+                            <strong>⚠️ Important:</strong> Risk transfers to client once items are dispatched. We recommend insurance for high-value items (available with Aramex).
+                        </div>
+
+                        <input type="hidden" id="selected-courier" required>
+
+                        <div class="price-calculator">
+                            <div class="calc-row">
+                                <span>Runner Fee:</span>
+                                <span id="runner-fee">R100 - R150</span>
+                            </div>
+                            <div class="calc-row">
+                                <span>Product Cost:</span>
+                                <span>As per purchase</span>
+                            </div>
+                            <div class="calc-row">
+                                <span>Courier Fee:</span>
+                                <span id="courier-fee">Select courier</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Submit Runner Request</button>
+                    </form>
+
+                    <div class="success-message" id="t2-success">
+                        ✅ Request submitted! We'll contact you within 24 hours with a detailed quote.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- TIER 3 BOOKING PAGE -->
+    <div id="tier3-booking" class="page-section">
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Tier 3: Niche Authority Services</h2>
+                
+                <div class="services-grid" style="margin-bottom: 3rem;">
+                    <div class="service-card">
+                        <h3>💇 Wig & Hair Sourcing</h3>
+                        <div class="price">15-25% Commission</div>
+                        <p>Expert wig selection and sourcing from trusted suppliers.</p>
+                        <button onclick="showWigForm()" class="cta-secondary">Request Wig Sourcing</button>
+                    </div>
+                    <div class="service-card">
+                        <h3>🌐 SHEIN Navigator</h3>
+                        <div class="price">R100 / R250</div>
+                        <p>Curated SHEIN selections to save you hours of scrolling.</p>
+                        <button onclick="showSheinForm()" class="cta-secondary">Get SHEIN Curation</button>
+                    </div>
+                </div>
+
+                <!-- Wig Sourcing Form -->
+                <div id="wig-form" class="booking-form" style="display: none;">
+                    <h3 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">Wig & Hair Sourcing Request</h3>
+                    
+                    <form onsubmit="submitWigRequest(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="wig-name">Full Name *</label>
+                                <input type="text" id="wig-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="wig-phone">WhatsApp Number *</label>
+                                <input type="tel" id="wig-phone" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="wig-email">Email Address *</label>
+                            <input type="email" id="wig-email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="wig-type">Wig Type *</label>
+                            <select id="wig-type" required>
+                                <option value="">-- Select Type --</option>
+                                <option value="lace-front">Lace Front</option>
+                                <option value="full-lace">Full Lace</option>
+                                <option value="closure">Closure Wig</option>
+                                <option value="frontal">Frontal Wig</option>
+                                <option value="synthetic">Synthetic</option>
+                                <option value="human-hair">Human Hair</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="wig-length">Desired Length *</label>
+                                <select id="wig-length" required>
+                                    <option value="">-- Select Length --</option>
+                                    <option value="short">Short (8-12 inches)</option>
+                                    <option value="medium">Medium (14-18 inches)</option>
+                                    <option value="long">Long (20-26 inches)</option>
+                                    <option value="extra-long">Extra Long (28+ inches)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="wig-texture">Hair Texture *</label>
+                                <select id="wig-texture" required>
+                                    <option value="">-- Select Texture --</option>
+                                    <option value="straight">Straight</option>
+                                    <option value="body-wave">Body Wave</option>
+                                    <option value="deep-wave">Deep Wave</option>
+                                    <option value="curly">Curly</option>
+                                    <option value="kinky">Kinky</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="wig-budget">Your Budget (Product Cost) *</label>
+                            <input type="number" id="wig-budget" required placeholder="R" oninput="calculateWigTotal()">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="wig-preferences">Additional Preferences</label>
+                            <textarea id="wig-preferences" placeholder="Color preferences, specific brand requests, styling needs, etc."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="wig-location">Delivery Location *</label>
+                            <input type="text" id="wig-location" required placeholder="City, Province">
+                        </div>
+
+                        <h3 style="margin: 2rem 0 1rem;">Select Your Courier</h3>
+                        <div class="logistics-selector">
+                            <div class="courier-option" onclick="selectCourier('paxi', this, 'wig')">
+                                <div class="courier-icon">📦</div>
+                                <div class="courier-name">PAXI</div>
+                                <div class="courier-tag">Budget-Friendly</div>
+                                <div class="courier-details">
+                                    <p><strong>Delivery:</strong> 3-7 business days</p>
+                                    <p><strong>Cost:</strong> R60-R120</p>
+                                </div>
+                            </div>
+
+                            <div class="courier-option" onclick="selectCourier('mukuru', this, 'wig')">
+                                <div class="courier-icon">🌍</div>
+                                <div class="courier-name">Mukuru</div>
+                                <div class="courier-tag">Diaspora Specialist</div>
+                                <div class="courier-details">
+                                    <p><strong>Delivery:</strong> 2-5 business days</p>
+                                    <p><strong>Cost:</strong> Varies</p>
+                                </div>
+                            </div>
+
+                            <div class="courier-option" onclick="selectCourier('aramex', this, 'wig')">
+                                <div class="courier-icon">✈️</div>
+                                <div class="courier-name">Aramex</div>
+                                <div class="courier-tag">Premium Service</div>
+                                <div class="courier-details">
+                                    <p><strong>Delivery:</strong> 1-3 business days</p>
+                                    <p><strong>Cost:</strong> From R150+</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" id="wig-selected-courier" required>
+
+                        <div class="price-calculator">
+                            <div class="calc-row">
+                                <span>Product Budget:</span>
+                                <span id="wig-product-cost">R0.00</span>
+                            </div>
+                            <div class="calc-row">
+                                <span>Our Commission (15-25%):</span>
+                                <span id="wig-commission">R0.00 - R0.00</span>
+                            </div>
+                            <div class="calc-row">
+                                <span>Courier Fee:</span>
+                                <span id="wig-courier-fee">Select courier</span>
+                            </div>
+                            <div class="calc-row">
+                                <span>Estimated Total:</span>
+                                <span id="wig-total">R0.00</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Submit Wig Request</button>
+                    </form>
+
+                    <div class="success-message" id="wig-success">
+                        ✅ Request submitted! We'll send you sourcing options and exact pricing within 48 hours.
+                    </div>
+                </div>
+
+                <!-- SHEIN Navigator Form -->
+                <div id="shein-form" class="booking-form" style="display: none;">
+                    <h3 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">SHEIN Navigator Service</h3>
+                    
+                    <form onsubmit="submitSheinRequest(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="shein-name">Full Name *</label>
+                                <input type="text" id="shein-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="shein-phone">WhatsApp Number *</label>
+                                <input type="tel" id="shein-phone" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="shein-email">Email Address *</label>
+                            <input type="email" id="shein-email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="shein-budget">SHEIN Shopping Budget *</label>
+                            <select id="shein-budget" required onchange="calculateSheinFee()">
+                                <option value="">-- Select Budget --</option>
+                                <option value="under1500">Under R1,500 (R100 service fee)</option>
+                                <option value="over1500">Over R1,500 (R250 service fee)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="shein-size">Your Size Information *</label>
+                            <textarea id="shein-size" required placeholder="Tops size, bottoms size, dress size, shoe size, etc. Be as detailed as possible."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="shein-style">Style Preferences *</label>
+                            <textarea id="shein-style" required placeholder="Describe your style (e.g., casual, elegant, edgy, minimalist). Any colors you love/avoid? Specific items you need?"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="shein-occasion">What will you wear this for? *</label>
+                            <select id="shein-occasion" required>
+                                <option value="">-- Select Occasion --</option>
+                                <option value="everyday">Everyday/Casual Wear</option>
+                                <option value="work">Work/Office</option>
+                                <option value="special">Special Events</option>
+                                <option value="vacation">Vacation/Travel</option>
+                                <option value="mixed">Mix of Everything</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="shein-timeline">When do you need this? *</label>
+                            <select id="shein-timeline" required>
+                                <option value="">-- Select Timeline --</option>
+                                <option value="urgent">Urgent (24-48 hours)</option>
+                                <option value="normal">Normal (3-5 days)</option>
+                                <option value="flexible">Flexible (1 week+)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="shein-location">Delivery Location *</label>
+                            <input type="text" id="shein-location" required placeholder="City, Province">
+                        </div>
+
+                        <h3 style="margin: 2rem 0 1rem;">Select Your Courier</h3>
+                        <div class="logistics-selector">
+                            <div class="courier-option" onclick="selectCourier('paxi', this, 'shein')">
+                                <div class="courier-icon">📦</div>
+                                <div class="courier-name">PAXI</div>
+                                <div class="courier-tag">Budget-Friendly</div>
+                                <div class="courier-details">
+                                    <p><strong>Delivery:</strong> 3-7 business days</p>
+                                    <p><strong>Cost:</strong> R60-R120</p>
+                                </div>
+                            </div>
+
+                            <div class="courier-option" onclick="selectCourier('mukuru', this, 'shein')">
+                                <div class="courier-icon">🌍</div>
+                                <div class="courier-name">Mukuru</div>
+                                <div class="courier-tag">Diaspora Specialist</div>
+                                <div class="courier-details">
+                                    <p><strong>Delivery:</strong> 2-5 business days</p>
+                                    <p><strong>Cost:</strong> Varies</p>
+                                </div>
+                            </div>
+
+                            <div class="courier-option" onclick="selectCourier('aramex', this, 'shein')">
+                                <div class="courier-icon">✈️</div>
+                                <div class="courier-name">Aramex</div>
+                                <div class="courier-tag">Premium Service</div>
+                                <div class="courier-details">
+                                    <p><strong>Delivery:</strong> 1-3 business days</p>
+                                    <p><strong>Cost:</strong> From R150+</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" id="shein-selected-courier" required>
+
+                        <div class="price-calculator">
+                            <div class="calc-row">
+                                <span>SHEIN Navigator Fee:</span>
+                                <span id="shein-service-fee">Select budget first</span>
+                            </div>
+                            <div class="calc-row">
+                                <span>Your SHEIN Budget:</span>
+                                <span id="shein-product-budget">As per selection</span>
+                            </div>
+                            <div class="calc-row">
+                                <span>Courier Fee:</span>
+                                <span id="shein-courier-fee">Select courier</span>
+                            </div>
+                        </div>
+
+                        <div style="background: var(--bg-light); padding: 1.5rem; border-radius: 10px; margin: 1.5rem 0;">
+                            <h4 style="color: var(--primary); margin-bottom: 1rem;">What You'll Receive:</h4>
+                            <ul id="shein-deliverables" style="list-style-position: inside;">
+                                <li>Select your budget to see what's included</li>
+                            </ul>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Submit SHEIN Request</button>
+                    </form>
+
+                    <div class="success-message" id="shein-success">
+                        ✅ Request submitted! We'll send your curated SHEIN selections within the timeline you selected.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- TIER 4 BOOKING PAGE -->
+    <div id="tier4-booking" class="page-section">
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Tier 4: Premium Transformation Services</h2>
+                
+                <p style="text-align: center; max-width: 700px; margin: 0 auto 3rem; font-size: 1.1rem;">
+                    High-touch, personalized styling for clients ready to invest in their image. Minimum budget R4,000+
+                </p>
+
+                <div class="booking-form">
+                    <h3 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">Request a Quote</h3>
+                    
+                    <form onsubmit="submitTier4Request(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="t4-name">Full Name *</label>
+                                <input type="text" id="t4-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="t4-phone">WhatsApp Number *</label>
+                                <input type="tel" id="t4-phone" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="t4-email">Email Address *</label>
+                            <input type="email" id="t4-email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="t4-service">Service Type *</label>
+                            <select id="t4-service" required onchange="updateTier4Info()">
+                                <option value="">-- Select Service --</option>
+                                <option value="wardrobe">Wardrobe Revamp</option>
+                                <option value="event">Event Styling</option>
+                                <option value="trip">Trip Packing</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="t4-budget">Your Budget *</label>
+                            <select id="t4-budget" required>
+                                <option value="">-- Select Budget --</option>
+                                <option value="4000-7000">R4,000 - R7,000</option>
+                                <option value="7000-15000">R7,000 - R15,000</option>
+                                <option value="15000-30000">R15,000 - R30,000</option>
+                                <option value="30000plus">R30,000+</option>
+                            </select>
+                        </div>
+
+                        <div id="event-specific" style="display: none;">
+                            <div class="form-group">
+                                <label for="t4-event-type">Event Type</label>
+                                <input type="text" id="t4-event-type" placeholder="Wedding, corporate event, photoshoot, etc.">
+                            </div>
+                            <div class="form-group">
+                                <label for="t4-event-date">Event Date</label>
+                                <input type="date" id="t4-event-date">
+                            </div>
+                        </div>
+
+                        <div id="trip-specific" style="display: none;">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="t4-destination">Destination</label>
+                                    <input type="text" id="t4-destination" placeholder="Where are you traveling?">
+                                </div>
+                                <div class="form-group">
+                                    <label for="t4-duration">Trip Duration</label>
+                                    <input type="text" id="t4-duration" placeholder="Number of days">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="t4-timeline">When do you need this? *</label>
+                            <select id="t4-timeline" required>
+                                <option value="">-- Select Timeline --</option>
+                                <option value="urgent">Urgent (Within 1 week)</option>
+                                <option value="normal">Normal (2-3 weeks)</option>
+                                <option value="flexible">Flexible (1 month+)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="t4-location">Your Location *</label>
+                            <input type="text" id="t4-location" required placeholder="City, Province">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="t4-goals">Your Style Goals *</label>
+                            <textarea id="t4-goals" required placeholder="What do you want to achieve? What's your vision? Any specific challenges or requirements?"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" required>
+                                I understand this is a premium service with a minimum budget of R4,000+ and that pricing will be customized based on my needs.
+                            </label>
+                        </div>
+
+                        <div style="background: var(--bg-light); padding: 1.5rem; border-radius: 10px; margin: 1.5rem 0;">
+                            <h4 style="color: var(--primary); margin-bottom: 1rem;">Premium Service Includes:</h4>
+                            <ul id="t4-inclusions" style="list-style-position: inside;">
+                                <li>Select a service type to see what's included</li>
+                            </ul>
+                        </div>
+
+                        <h3 style="margin: 2rem 0 1rem;">Preferred Meeting Type</h3>
+                        <div class="form-group">
+                            <select id="t4-meeting" required>
+                                <option value="">-- Select Preference --</option>
+                                <option value="in-person">In-Person (Pretoria area)</option>
+                                <option value="virtual">Virtual (Zoom/WhatsApp)</option>
+                                <option value="flexible">Flexible</option>
+                            </select>
+                        </div>
+
+                        <div style="text-align: center; margin: 2rem 0;">
+                            <p style="font-size: 1.1rem; color: var(--text-light);">
+                                <strong>Calendar Integration:</strong> After submitting, you'll be redirected to schedule your consultation
+                            </p>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Request Premium Service Quote</button>
+                    </form>
+
+                    <div class="success-message" id="t4-success">
+                        ✅ Request submitted! Redirecting to schedule your consultation...
+                    </div>
+                </div>
+
+                <!-- Calendly Embed Placeholder -->
+                <div id="calendly-section" style="display: none; margin-top: 3rem;">
+                    <h3 style="text-align: center; margin-bottom: 2rem;">Schedule Your Consultation</h3>
+                    <div style="background: var(--bg-light); padding: 2rem; border-radius: 10px; text-align: center;">
+                        <p style="margin-bottom: 1rem;">Calendar integration would appear here</p>
+                        <p style="color: var(--text-light); font-size: 0.9rem;">
+                            Integration with Calendly or similar booking system for Tier 4 consultations with timezone support for SADC diaspora
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="about" class="page-section">
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">About WDYBI Personal Shopping</h2>
+                <div style="max-width: 800px; margin: 0 auto; line-height: 1.8;">
+                    <div class="founder-image" style="margin: 2rem auto;">👗</div>
+                    <h3 style="text-align: center; color: var(--primary); margin-bottom: 2rem;">Meet Lethokuhle Chivizhe (Sheisbigsteppa)</h3>
+                    
+                    <p>Born from a passion for fashion and a frustration with fragmented shopping experiences, WDYBI Personal Shopping was founded by Lethokuhle Chivizhe, known to her community as Sheisbigsteppa. With years of styling expertise and a keen eye for South African fashion trends, Lethokuhle recognized a gap in the market: time-poor professionals, diaspora families, and fashion enthusiasts needed a trusted curator, not another overwhelming shopping mall.</p>
+
+                    <p>WDYBI Personal Shopping (Pty) Ltd is a registered South African company operating from Pretoria, Gauteng. Our mission is simple: transform the chaos of modern shopping into a curated, convenient experience that saves you time, money, and decision fatigue.</p>
+
+                    <h3 style="color: var(--primary); margin-top: 2rem;">Our Team</h3>
+                    <p>WDYBI operates on an 80/20 partnership model. Lethokuhle leads all styling, client consultations, and creative direction (80%), while Manqoba handles strategy, finance, and business operations (20%). This structure ensures you always get expert fashion guidance while maintaining professional business standards.</p>
+
+                    <h3 style="color: var(--primary); margin-top: 2rem;">Why We're Different</h3>
+                    <p>We're not just personal shoppers—we're curators of confidence. Whether you're a busy executive who needs a wardrobe refresh, a diaspora client supporting family back home, or someone overwhelmed by SHEIN's 10,000+ daily uploads, we bring clarity, expertise, and personalized service to every interaction.</p>
+
+                    <p>From R50 quick consults to R4,000+ wardrobe transformations, we meet you where you are and elevate you to where you want to be.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- SERVICES PAGE -->
+    <div id="services" class="page-section">
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">All Services at a Glance</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>💬 Tier 1: Quick Consults</h3>
+                        <div class="price">R50</div>
+                        <ul>
+                            <li>15-20 minute WhatsApp/Zoom session</li>
+                            <li>Instant fashion advice</li>
+                            <li>Non-refundable, immediate value</li>
+                        </ul>
+                        <a href="#" onclick="showPage('tier1-payment')" class="cta-secondary">Book Now</a>
+                    </div>
+
+                    <div class="service-card">
+                        <h3>🛍️ Tier 2: Runner Services</h3>
+                        <div class="price">R100-R150</div>
+                        <ul>
+                            <li>Mall browsing for specific items</li>
+                            <li>Product sourcing assistance</li>
+                            <li>Client pays product + runner fee + shipping</li>
+                        </ul>
+                        <a href="#" onclick="showPage('tier2-booking')" class="cta-secondary">Request Service</a>
+                    </div>
+
+                    <div class="service-card">
+                        <h3>💇 Tier 3: Wig & Hair Sourcing</h3>
+                        <div class="price">15-25% Commission</div>
+                        <ul>
+                            <li>Expert wig selection and sourcing</li>
+                            <li>Quality assurance</li>
+                            <li>Delivery coordination</li>
+                        </ul>
+                        <a href="#" onclick="showPage('tier3-booking')" class="cta-secondary">Get Quote</a>
+                    </div>
+
+                    <div class="service-card">
+                        <h3>🌐 Tier 3: SHEIN Navigator</h3>
+                        <div class="price">R100 / R250</div>
+                        <ul>
+                            <li>Curated SHEIN selections</li>
+                            <li>Budget-based recommendations</li>
+                            <li>Save hours of scrolling</li>
+                        </ul>
+                        <a href="#" onclick="showPage('tier3-booking')" class="cta-secondary">Start Shopping</a>
+                    </div>
+
+                    <div class="service-card">
+                        <h3>👔 Tier 4: Wardrobe Revamp</h3>
+                        <div class="price">From R750</div>
+                        <ul>
+                            <li>Complete wardrobe consultation</li>
+                            <li>Personal shopping with commission</li>
+                            <li>Style transformation</li>
+                        </ul>
+                        <a href="#" onclick="showPage('tier4-booking')" class="cta-secondary">Transform Now</a>
+                    </div>
+
+                    <div class="service-card">
+                        <h3>✨ Tier 4: Event Styling & Trip Packing</h3>
+                        <div class="price">Custom Quote</div>
+                        <ul>
+                            <li>Wedding, event, photoshoot styling</li>
+                            <li>Professional trip packing</li>
+                            <li>High-touch personalized service</li>
+                        </ul>
+                        <a href="#" onclick="showPage('tier4-booking')" class="cta-secondary">Inquire</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- LOGISTICS PAGE -->
+    <div id="logistics" class="page-section">
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Logistics & Shipping</h2>
+                
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <p style="text-align: center; font-size: 1.2rem; color: var(--primary); margin-bottom: 2rem;">All orders are dispatched from our Pretoria hub.We work with trusted courier partners to get your items to you safely and affordably.</p>
+                </div>
+
+                <div class="logistics-selector">
+                    <div class="courier-option">
+                        <div class="courier-icon">📦</div>
+                        <div class="courier-name">PAXI</div>
+                        <div class="courier-tag">Budget-Friendly Option</div>
+                        <div class="courier-details">
+                            <p><strong>Delivery Time:</strong> 3-7 business days</p>
+                            <p><strong>Cost Range:</strong> R60-R120</p>
+                            <p><strong>Best For:</strong> Standard items, cost-conscious clients</p>
+                            <p><strong>Coverage:</strong> Point-to-point delivery across South Africa</p>
+                        </div>
+                    </div>
+
+                    <div class="courier-option">
+                        <div class="courier-icon">🌍</div>
+                        <div class="courier-name">Mukuru</div>
+                        <div class="courier-tag">Diaspora Specialist</div>
+                        <div class="courier-details">
+                            <p><strong>Delivery Time:</strong> 2-5 business days (domestic)</p>
+                            <p><strong>Cost Range:</strong> Varies by location and weight</p>
+                            <p><strong>Best For:</strong> Clients supporting family back home</p>
+                            <p><strong>Coverage:</strong> Trusted cross-border and domestic logistics</p>
+                        </div>
+                    </div>
+
+                    <div class="courier-option">
+                        <div class="courier-icon">✈️</div>
+                        <div class="courier-name">Aramex</div>
+                        <div class="courier-tag">Premium Service</div>
+                        <div class="courier-details">
+                            <p><strong>Delivery Time:</strong> 1-3 business days</p>
+                            <p><strong>Cost Range:</strong> From R150+</p>
+                            <p><strong>Best For:</strong> High-value items, urgent deliveries</p>
+                            <p><strong>Features:</strong> Full tracking, insurance options available</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="max-width: 900px; margin: 3rem auto;">
+                    <div style="background: white; padding: 2rem; border-radius: 10px; margin: 2rem 0; border-left: 4px solid var(--primary);">
+                        <h3 style="color: var(--primary); margin-bottom: 1rem;">📍 Dispatch & Delivery Process</h3>
+                        <ol style="margin-left: 1.5rem; line-height: 2;">
+                            <li><strong>Step 1:</strong> We confirm your order and payment</li>
+                            <li><strong>Step 2:</strong> Items are packed securely at our Pretoria hub</li>
+                            <li><strong>Step 3:</strong> You choose your preferred courier</li>
+                            <li><strong>Step 4:</strong> We send tracking information once dispatched</li>
+                            <li><strong>Step 5:</strong> You receive your curated selections</li>
+                        </ol>
+                    </div>
+
+                    <div class="risk-disclaimer">
+                        <h3 style="margin-bottom: 1rem;">⚠️ Important Liability Information</h3>
+                        <p><strong>Risk Transfer:</strong> Once items are dispatched and handed to the courier, risk transfers to the client. WDYBI is not liable for courier delays, loss, or damage after dispatch.</p>
+                        <p style="margin-top: 1rem;"><strong>Insurance:</strong> We recommend courier insurance for high-value items. Insurance costs are borne by the client but provide peace of mind.</p>
+                        <p style="margin-top: 1rem;"><strong>International/Diaspora:</strong> Customs duties, import taxes, and clearance delays are the client's responsibility. We provide accurate documentation but cannot control customs processes.</p>
+                    </div>
+
+                    <div style="background: white; padding: 2rem; border-radius: 10px; margin: 2rem 0; border-left: 4px solid var(--primary);">
+                        <h3 style="color: var(--primary); margin-bottom: 1rem;">🌍 Diaspora Support</h3>
+                        <p>Supporting family back home? We specialize in helping diaspora clients source and send items to loved ones in South Africa. Our Mukuru partnership ensures reliable delivery, and we handle all local sourcing so you can shop from anywhere in the world.</p>
+                        <ul style="margin: 1rem 0 0 1.5rem; line-height: 2;">
+                            <li>Remote consultation via WhatsApp/Zoom</li>
+                            <li>Local sourcing from Pretoria stores</li>
+                            <li>Photo/video updates before purchase</li>
+                            <li>Secure packaging and dispatch</li>
+                            <li>Tracking information provided</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- TESTIMONIALS PAGE -->
+    <div id="testimonials" class="page-section">
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">What Our Clients Say</h2>
+                
+                <div class="testimonial">
+                    <p>"I'm a busy executive with zero time for shopping. WDYBI's wardrobe revamp service literally transformed my professional image. Lethokuhle understood exactly what I needed and delivered beyond expectations. Worth every rand!"</p>
+                    <p class="testimonial-author">— Thabo M., Corporate Executive</p>
+                </div>
+
+                <div class="testimonial">
+                    <p>"Living in London but wanting to support my mom back home, WDYBI made it so easy. They sourced everything she needed, sent me photos for approval, and handled delivery through Mukuru. Professional, reliable, and caring!"</p>
+                    <p class="testimonial-author">— Naledi K., Diaspora Client (UK)</p>
+                </div>
+
+                <div class="testimonial">
+                    <p>"The SHEIN Navigator service saved me HOURS. I was so overwhelmed by their site with thousands of items daily. Lethokuhle curated the perfect selections for my style and budget. Everything fit perfectly and I got so many compliments!"</p>
+                    <p class="testimonial-author">— Precious S., Fashion Enthusiast</p>
+                </div>
+
+                <div class="testimonial">
+                    <p>"Needed a last-minute outfit for a wedding. The R50 quick consult was a game-changer. Got expert advice immediately via WhatsApp, bought exactly what was recommended, and looked amazing. Best R50 I've ever spent!"</p>
+                    <p class="testimonial-author">— Sipho D., Event Client</p>
+                </div>
+
+                <div class="testimonial">
+                    <p>"I've been struggling to find quality wigs that match my skin tone and style. WDYBI's wig sourcing service connected me with the perfect piece. The attention to detail and quality assurance was impressive. Finally found my go-to supplier!"</p>
+                    <p class="testimonial-author">— Zanele P., Beauty Enthusiast</p>
+                </div>
+
+                <div class="testimonial">
+                    <p>"As a content creator, I need fresh looks constantly but don't have time to shop. The runner service is my secret weapon. They find exactly what I describe, send photos, and I approve. It's like having a personal stylist on call!"</p>
+                    <p class="testimonial-author">— Lerato M., Content Creator</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Our Work</h2>
+                <p style="text-align: center; margin-bottom: 3rem; color: var(--text-light);">Real transformations, real confidence</p>
+                
+                <div class="services-grid">
+                    <div style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <div style="width: 100%; height: 250px; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 4rem;">👔</div>
+                        <div style="padding: 1.5rem;">
+                            <h4 style="color: var(--primary); margin-bottom: 0.5rem;">Corporate Wardrobe Revamp</h4>
+                            <p><strong>Challenge:</strong> Startup founder needed professional wardrobe for investor meetings</p>
+                            <p><strong>Solution:</strong> Complete wardrobe audit + strategic shopping</p>
+                            <p><strong>Result:</strong> Confident, polished, secured funding</p>
+                        </div>
+                    </div>
+
+                    <div style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <div style="width: 100%; height: 250px; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 4rem;">💍</div>
+                        <div style="padding: 1.5rem;">
+                            <h4 style="color: var(--primary); margin-bottom: 0.5rem;">Wedding Guest Styling</h4>
+                            <p><strong>Challenge:</strong> Client needed show-stopping look for December wedding</p>
+                            <p><strong>Solution:</strong> Custom dress sourcing + accessories + styling</p>
+                            <p><strong>Result:</strong> Most photographed guest, major confidence boost</p>
+                        </div>
+                    </div>
+
+                    <div style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <div style="width: 100%; height: 250px; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 4rem;">🧳</div>
+                        <div style="padding: 1.5rem;">
+                            <h4 style="color: var(--primary); margin-bottom: 0.5rem;">European Trip Capsule</h4>
+                            <p><strong>Challenge:</strong> 2-week European trip, small suitcase needed</p>
+                            <p><strong>Solution:</strong> 15 pieces creating 30+ outfit combinations</p>
+                            <p><strong>Result:</strong> Traveled light, looked amazing, zero wardrobe stress</p>
+                        </div>
+                    </div>
+
+                    <div style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <div style="width: 100%; height: 250px; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 4rem;">💇</div>
+                        <div style="padding: 1.5rem;">
+                            <h4 style="color: var(--primary); margin-bottom: 0.5rem;">Wig Sourcing Success</h4>
+                            <p><strong>Challenge:</strong> Finding HD lace wig matching exact skin tone</p>
+                            <p><strong>Solution:</strong> Vendor network + quality inspection + perfect match</p>
+                            <p><strong>Result:</strong> "Looks like it grew from my scalp!"</p>
+                        </div>
+                    </div>
+
+                    <div style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <div style="width: 100%; height: 250px; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 4rem;">🛍️</div>
+                        <div style="padding: 1.5rem;">
+                            <h4 style="color: var(--primary); margin-bottom: 0.5rem;">SHEIN Haul Curation</h4>
+                            <p><strong>Challenge:</strong> Overwhelmed by SHEIN, needed summer wardrobe</p>
+                            <p><strong>Solution:</strong> Curated 18 pieces for R1,200 budget</p>
+                            <p><strong>Result:</strong> Zero buyer's remorse, everything fits and flatters</p>
+                        </div>
+                    </div>
+
+                    <div style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                        <div style="width: 100%; height: 250px; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 4rem;">📸</div>
+                        <div style="padding: 1.5rem;">
+                            <h4 style="color: var(--primary); margin-bottom: 0.5rem;">Photoshoot Styling</h4>
+                            <p><strong>Challenge:</strong> Content creator needed 5 unique looks for brand campaign</p>
+                            <p><strong>Solution:</strong> Strategic sourcing across multiple stores + styling session</p>
+                            <p><strong>Result:</strong> Campaign went viral, client booked for 6 months</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: var(--bg-light); border-radius: 10px;">
+                    <p style="font-size: 1.2rem; color: var(--text);">Follow <strong style="color: var(--primary);">@sheisbigsteppa</strong> on Instagram for daily styling inspiration and client transformations!</p>
+                    <a href="https://instagram.com/sheisbigsteppa" target="_blank" class="cta-secondary" style="margin-top: 1rem;">Follow Now</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- TERMS & CONDITIONS PAGE -->
+    <div id="terms" class="page-section">
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Terms & Conditions</h2>
+                
+                <div style="max-width: 900px; margin: 0 auto; line-height: 1.8;">
+                    <p><em>Last Updated: October 2025</em></p>
+
+                    <h3 style="color: var(--primary); margin: 2rem 0 1rem;">1. Service Agreement</h3>
+                    <p>By engaging WDYBI Personal Shopping (Pty) Ltd, you agree to these terms and conditions. WDYBI operates as an independent agent facilitating purchases on behalf of clients. We are not the seller of products but act as your authorized representative in sourcing, selecting, and purchasing items.</p>
+
+                    <h3 style="color: var(--primary); margin: 2rem 0 1rem;">2. Service Definitions</h3>
+                    <p><strong>Tier 1 - Quick Consults:</strong> Non-refundable R50 advisory sessions via WhatsApp/Zoom. Advice is professional opinion and does not guarantee specific outcomes.</p>
+                    <p><strong>Tier 2 - Runner Services:</strong> Physical shopping assistance. Client pays runner fee + product cost + logistics. All purchases require client approval before transaction.</p>
+                    <p><strong>Tier 3 - Niche Services:</strong> Commission-based (15-25%) for wig sourcing; flat-fee (R100-R250) for SHEIN navigation. Client pays all product costs separately.</p>
+                    <p><strong>Tier 4 - Premium Services:</strong> Consultation fees (from R750) + commission on purchases (15-20%). Minimum spend requirements apply.</p>
+
+                    <h3 style="color: var(--primary); margin: 2rem 0 1rem;">3. Payment Terms</h3>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>All consultation and service fees are due upfront before service delivery</li>
+                        <li>Product costs are paid separately and must be cleared before purchase</li>
+                        <li>Commission-based services calculate commission on final purchase value</li>
+                        <li>Logistics/courier fees are quoted separately and paid by client</li>
+                        <li>Payments processed via PayFast or Stripe are subject to their respective terms</li>
+                    </ul>
+
+                    <h3 style="color: var(--primary); margin: 2rem 0 1rem;">4. Refund Policy</h3>
+                    <p><strong>Service Fees:</strong> Tier 1 consults are non-refundable. Other service fees are non-refundable once service delivery begins.</p>
+                    <p><strong>Product Purchases:</strong> Refunds on physical products follow the original retailer's return policy. WDYBI facilitates returns but does not guarantee refund approval. Return shipping costs are borne by client.</p>
+                    <p><strong>No-Show Policy:</strong> Missed appointments without 24-hour notice forfeit the service fee.</p>
+
+                    <h3 style="color: var(--primary); margin: 2rem 0 1rem;">5. Liability & Risk Transfer</h3>
+                    <p><strong>Shopping Agent Status:</strong> WDYBI acts as your authorized agent. We exercise reasonable care in product selection but are not liable for manufacturing defects, sizing discrepancies, or product performance issues.</p>
+                    <p><strong>Courier Liability:</strong> Once items are handed to the courier, risk transfers entirely to the client. WDYBI is not responsible for courier delays, loss, damage, or theft after dispatch.</p>
+                    <p><strong>Product Liability:</strong> All products are sourced from third-party retailers. WDYBI makes no warranties about product quality, durability, or suitability beyond what is provided by the original seller.</p>
+
+                    <h3 style="color: var(--primary); margin: 2rem 0 1rem;">6. International & Diaspora Services</h3>
+                    <p>For international shipments or diaspora services:</p>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>Client is responsible for all customs duties, import taxes, and clearance fees</li>
+                        <li>WDYBI provides accurate shipping documentation but cannot control customs processes</li>
+                        <li>Delays at customs do not entitle clients to refunds of service fees</li>
+                        <li>Prohibited items (per destination country regulations) cannot be shipped</li>
+                        <li>Currency fluctuations may affect final costs for international clients</li>
+                    </ul>
+
+                    <h3 style="color: var(--primary); margin: 2rem 0 1rem;">7. Intellectual Property</h3>
+                    <p>All styling concepts, outfit combinations, shopping lists, and creative work produced by WDYBI remain the intellectual property of WDYBI Personal Shopping (Pty) Ltd. Clients may use these for personal purposes but may not reproduce, resell, or distribute WDYBI's work commercially without written permission.</p>
+
+                    <h3 style="color: var(--primary); margin: 2rem 0 1rem;">8. Privacy & Confidentiality</h3>
+                    <p>WDYBI respects client privacy in compliance with POPIA (Protection of Personal Information Act). Personal information (sizes, preferences, addresses) is kept confidential and used solely for service delivery. We do not sell or share client data with third parties except as necessary for courier/delivery purposes or as required by law.</p>
+
+                    <h3 style="color: var(--primary); margin: 2rem 0 1rem;">9. Client Responsibilities</h3>
+                    <ul style="margin-left: 1.5rem;">
+                        <li>Provide accurate measurements, sizes, and preferences</li>
+                        <li>Respond to approval requests within agreed timelines</li>
+                        <li>Pay all fees and costs promptly</li>
+                        <li>Provide accurate delivery information</li>
+                        <li>Communicate any concerns immediately</li>
+                        <li>Inspect items upon delivery and report issues within 48 hours</li>
+                    </ul>
+
+                    <h3 style="color: var(--primary); margin: 2rem 0 1rem;">10. Dispute Resolution</h3>
+                    <p>Any disputes will first be addressed through good-faith communication between WDYBI and the client. If unresolved, matters will be handled per South African law, with jurisdiction in Pretoria, Gauteng. Both parties agree to attempt mediation before pursuing legal action.</p>
+
+                    <h3 style="color: var(--primary); margin: 2rem 0 1rem;">11. Service Modifications</h3>
+                    <p>WDYBI reserves the right to modify services, pricing, and terms with reasonable notice to clients. Changes do not affect services already booked and paid for. Clients will be notified of significant changes via email.</p>
+
+                    <h3 style="color: var(--primary); margin: 2rem 0 1rem;">12. Force Majeure</h3>
+                    <p>WDYBI is not liable for service delays or failures due to circumstances beyond reasonable control including but not limited to: natural disasters, courier strikes, store closures, platform outages, civil unrest, pandemics, or government restrictions.</p>
+
+                    <h3 style="color: var(--primary); margin: 2rem 0 1rem;">13. Limitation of Liability</h3>
+                    <p>WDYBI's total liability for any claim arising from our services is limited to the amount of service fees paid by the client for that specific service. We are not liable for indirect, consequential, or punitive damages.</p>
+
+                    <h3 style="color: var(--primary); margin: 2rem 0 1rem;">14. Insurance</h3>
+                    <p>WDYBI recommends that clients purchase courier insurance for high-value items. Insurance costs are the client's responsibility. WDYBI can facilitate insurance arrangements but does not guarantee claims approval.</p>
+
+                    <h3 style="color: var(--primary); margin: 2rem 0 1rem;">15. Communication</h3>
+                    <p>Primary communication channels are WhatsApp, email, and Zoom. Response times are within 24 hours on business days (Monday-Friday, 9AM-6PM SAST; Saturday 10AM-3PM SAST). Urgent matters should be marked as such.</p>
+
+                    <p style="margin-top: 2rem; padding: 1.5rem; background: var(--bg-light); border-radius: 10px;"><strong>By using WDYBI's services, you acknowledge that you have read, understood, and agreed to these Terms & Conditions. If you do not agree, please do not use our services.</strong></p>
+
+                    <p style="margin-top: 1rem; text-align: center;">
+                        <strong>WDYBI Personal Shopping (Pty) Ltd</strong><br>
+                        Registered in South Africa<br>
+                        Pretoria, Gauteng<br>
+                        info@wdybi.co.za
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- CONTACT & FAQ PAGE -->
+    <div id="contact" class="page-section">
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                
+                <div class="booking-form">
+                    <form id="contactForm" onsubmit="handleContactSubmit(event)">
+                        <div class="form-group">
+                            <label for="contact-name">Full Name *</label>
+                            <input type="text" id="contact-name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-email">Email Address *</label>
+                            <input type="email" id="contact-email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-phone">Phone Number (WhatsApp) *</label>
+                            <input type="tel" id="contact-phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-service">Service Interested In *</label>
+                            <select id="contact-service" required>
+                                <option value="">-- Select Service --</option>
+                                <option value="tier1">Tier 1: Quick Consult (R50)</option>
+                                <option value="tier2">Tier 2: Runner Service (R100-R150)</option>
+                                <option value="tier3-wig">Tier 3: Wig & Hair Sourcing</option>
+                                <option value="tier3-shein">Tier 3: SHEIN Navigator</option>
+                                <option value="tier4-wardrobe">Tier 4: Wardrobe Revamp</option>
+                                <option value="tier4-event">Tier 4: Event Styling</option>
+                                <option value="tier4-trip">Tier 4: Trip Packing</option>
+                                <option value="general">General Inquiry</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-budget">Approximate Budget</label>
+                            <select id="contact-budget">
+                                <option value="">-- Select Budget Range --</option>
+                                <option value="under500">Under R500</option>
+                                <option value="500-1500">R500 - R1,500</option>
+                                <option value="1500-4000">R1,500 - R4,000</option>
+                                <option value="4000plus">R4,000+</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-location">Your Location *</label>
+                            <input type="text" id="contact-location" placeholder="City, Province or Country" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-message">Tell Us About Your Needs *</label>
+                            <textarea id="contact-message" required placeholder="What are you looking for? Any specific preferences, deadlines, or requirements?"></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Send Inquiry</button>
+                    </form>
+
+                    <div class="success-message" id="contact-success">
+                        ✅ Thank you! We'll respond within 24 hours on business days.
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: var(--bg-light); border-radius: 10px;">
+                    <h3 style="color: var(--primary); margin-bottom: 1rem;">Other Ways to Reach Us</h3>
+                    <p><strong>Email:</strong> info@wdybi.co.za</p>
+                    <p><strong>WhatsApp:</strong> +27 XX XXX XXXX</p>
+                    <p><strong>Address:</strong> Pretoria, Gauteng, South Africa</p>
+                    <p><strong>Operating Hours:</strong></p>
+                    <p>Monday - Friday: 9:00 AM - 6:00 PM SAST</p>
+                    <p>Saturday: 10:00 AM - 3:00 PM SAST</p>
+                    <p>Sunday: Closed</p>
+                    <p style="margin-top: 1rem; color: var(--text-light);"><em>Response time: Within 24 hours on business days</em></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">❓ How do refunds work?</div>
+                    <div class="faq-answer">
+                        Service fees (consultations, runner fees) are non-refundable once service begins. For physical products, refunds follow the original retailer's policy. We facilitate returns but cannot guarantee approval. Return shipping is paid by client.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">❓ What happens if an item doesn't fit?</div>
+                    <div class="faq-answer">
+                        We work hard to get sizing right by collecting detailed measurements. If an item doesn't fit, we can facilitate an exchange or return per the retailer's policy. You'll pay return shipping, and we may charge a small re-processing fee. To minimize sizing issues, always provide accurate measurements.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">❓ Do you offer shipping insurance?</div>
+                    <div class="faq-answer">
+                        We can arrange courier insurance for high-value items through Aramex. Insurance costs are paid by the client. Once items leave our Pretoria hub, risk transfers to you unless insured. We strongly recommend insurance for purchases over R2,000.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">❓ Can I cancel a service after booking?</div>
+                    <div class="faq-answer">
+                        Cancellations before service delivery begins may receive partial refunds (minus administrative fees). Once we've started shopping, sourcing, or consulting, fees are non-refundable. Tier 1 consults are always non-refundable. Please contact us within 24 hours of booking for cancellation requests.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">❓ How long does delivery take?</div>
+                    <div class="faq-answer">
+                        Depends on courier choice. PAXI: 3-7 business days. Mukuru: 2-5 business days (domestic), varies for diaspora destinations. Aramex: 1-3 business days. International deliveries depend on customs clearance which can add 3-10 business days. We provide tracking for all shipments.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">❓ Do you shop at any store I request?</div>
+                    <div class="faq-answer">
+                        We primarily work with accessible retailers in Pretoria (Menlyn, Brooklyn Mall, Mall of Africa) and reliable online platforms (SHEIN, Superbalist, etc.). If you have specific store requests, let us know—we'll do our best to accommodate, though some boutique or distant locations may not be feasible or may incur additional fees.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">❓ What makes your SHEIN Navigator different?</div>
+                    <div class="faq-answer">
+                        We navigate SHEIN's 10,000+ daily uploads to curate selections matching YOUR style, budget, and body type. We filter out low-quality items (based on reviews and ratings), provide accurate size guidance (accounting for SHEIN's inconsistent sizing), and create mix-and-match outfit suggestions. You save 5-10 hours of scrolling and avoid buyer's remorse.
+                        </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">❓ Can diaspora clients use your services?</div>
+                    <div class="faq-answer">
+                        Absolutely! We specialize in helping diaspora clients support family in South Africa. You communicate with us from anywhere in the world via WhatsApp/Zoom, we handle local sourcing and shopping in Pretoria, send photos/videos for approval, and arrange delivery via Mukuru or other diaspora-friendly couriers. Payment can be made via international methods (Stripe).
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">❓ What's your commission structure for premium services?</div>
+                    <div class="faq-answer">
+                        Tier 3 wig sourcing: 15-25% commission on product value. Tier 4 wardrobe revamps and premium services: R750 consultation fee + 15-20% commission on items we purchase on your behalf. You pay: consultation fee + product costs + our commission + logistics. Total investment varies based on your needs and budget.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">❓ How do payment methods work?</div>
+                    <div class="faq-answer">
+                        We accept payment via PayFast (for South African clients) and Stripe (for international clients). Service fees are paid upfront. For shopping services, you'll pay product costs after we've sourced items and you've approved them. We send detailed invoices and never purchase without your explicit approval.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">❓ What if I'm not satisfied with the service?</div>
+                    <div class="faq-answer">
+                        Your satisfaction is our priority. If you're unhappy with any aspect of our service, contact us immediately. We'll work to resolve the issue. For product-related concerns, we facilitate returns/exchanges per retailer policies. Service fees are non-refundable, but we're committed to making things right within our scope of influence.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">❓ Do you offer style advice for men?</div>
+                    <div class="faq-answer">
+                        Yes! While our founder Lethokuhle specializes in women's fashion, we offer styling services for all genders. Men's services include wardrobe building, event styling, and runner services. Let us know your needs when booking and we'll ensure you get expert guidance.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">❓ Can I book multiple services at once?</div>
+                    <div class="faq-answer">
+                        Absolutely! Many clients combine services for comprehensive solutions. For example: Quick Consult + Runner Service, or SHEIN Navigator + Wig Sourcing. Contact us to discuss package options and potential discounts for bundled services.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">❓ How do I track my order?</div>
+                    <div class="faq-answer">
+                        Once your items are dispatched, we provide tracking information via WhatsApp and email. You can track your shipment directly with the courier. We also check in to confirm delivery and ensure everything arrived safely.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFAQ(this)">
+                    <div class="faq-question">❓ What's the minimum/maximum budget for services?</div>
+                    <div class="faq-answer">
+                        Tier 1: R50 (fixed). Tier 2: R100-R150 fee + product cost (no minimum). Tier 3: R100-R250 fee + product cost (no minimum for SHEIN; wig sourcing typically R500+ product cost). Tier 4: R750+ consultation, minimum R4,000 total investment for best results. No maximum limits—we work with all budgets within tier requirements.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="logo" style="font-size: 2rem; margin-bottom: 1rem;">WDYBI</div>
+            <p style="color: var(--accent); margin-bottom: 2rem;">Curation, Not Confusion. Your Digital Mall at Your Convenience.</p>
+            
+            <div class="footer-links">
+                <a href="#" onclick="showPage('home')">Home</a>
+                <a href="#" onclick="showPage('about')">About Us</a>
+                <a href="#" onclick="showPage('services')">Services</a>
+                <a href="#" onclick="showPage('logistics')">Logistics</a>
+                <a href="#" onclick="showPage('testimonials')">Testimonials</a>
+                <a href="#" onclick="showPage('terms')">Terms & Conditions</a>
+                <a href="#" onclick="showPage('contact')">Contact</a>
+            </div>
+
+            <div style="margin: 2rem 0;">
+                <p style="color: var(--text-light); font-size: 0.9rem;">Follow Us:</p>
+                <div style="display: flex; justify-content: center; gap: 1.5rem; margin-top: 1rem;">
+                    <a href="https://instagram.com/sheisbigsteppa" target="_blank" style="color: var(--accent); font-size: 1.5rem; text-decoration: none;">📸</a>
+                    <a href="https://wa.me/27XXXXXXXXX" target="_blank" style="color: var(--accent); font-size: 1.5rem; text-decoration: none;">💬</a>
+                    <a href="mailto:info@wdybi.co.za" style="color: var(--accent); font-size: 1.5rem; text-decoration: none;">✉️</a>
+                </div>
+            </div>
+
+            <p style="margin-top: 2rem; color: var(--text-light);">© 2025 WDYBI Personal Shopping (Pty) Ltd. All Rights Reserved.</p>
+            <p style="color: var(--text-light); font-size: 0.9rem;">Registered in South Africa | Pretoria, Gauteng</p>
+            <p style="color: var(--text-light); font-size: 0.85rem; margin-top: 1rem;">
+                <a href="#" onclick="showPage('terms')" style="color: var(--accent);">Privacy Policy</a> | 
+                <a href="#" onclick="showPage('terms')" style="color: var(--accent);">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Store selected courier globally
+        let selectedCourierData = {};
+
+        // Page Navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page-section').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // FAQ Toggle
+        function toggleFAQ(element) {
+            element.classList.toggle('active');
+        }
+
+        // Courier Selection
+        function selectCourier(courierType, element, formType = 'default') {
+            // Remove selection from all courier options in this form
+            const parent = element.closest('.logistics-selector');
+            parent.querySelectorAll('.courier-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add selection to clicked option
+            element.classList.add('selected');
+            
+            // Store selection based on form type
+            if (formType === 'wig') {
+                document.getElementById('wig-selected-courier').value = courierType;
+                document.getElementById('wig-courier-fee').textContent = getCourierFee(courierType);
+            } else if (formType === 'shein') {
+                document.getElementById('shein-selected-courier').value = courierType;
+                document.getElementById('shein-courier-fee').textContent = getCourierFee(courierType);
+            } else {
+                document.getElementById('selected-courier').value = courierType;
+                document.getElementById('courier-fee').textContent = getCourierFee(courierType);
+            }
+            
+            selectedCourierData[formType] = courierType;
+        }
+
+        function getCourierFee(courierType) {
+            const fees = {
+                'paxi': 'R60-R120',
+                'mukuru': 'Varies',
+                'aramex': 'From R150+'
+            };
+            return fees[courierType] || 'Select courier';
+        }
+
+        // Tier 1 Payment Processing
+        function processTier1Payment(event) {
+            event.preventDefault();
+            // Form validation would happen here
+            const consultType = document.getElementById('t1-consult-type').value;
+            alert('Payment processing would happen here. After successful payment, user would be redirected to WhatsApp or Zoom scheduling.');
+        }
+
+        function processPayment(gateway) {
+            // Show spinner
+            document.getElementById('payment-spinner').classList.add('show');
+            
+            // Simulate payment processing
+            setTimeout(() => {
+                document.getElementById('payment-spinner').classList.remove('show');
+                document.getElementById('payment-success').classList.add('show');
+                
+                // Simulate redirect after payment
+                setTimeout(() => {
+                    const consultType = document.getElementById('t1-consult-type').value;
+                    if (consultType === 'whatsapp') {
+                        alert('Redirecting to WhatsApp...\n\nIn production, this would open: wa.me/27XXXXXXXXX');
+                    } else {
+                        alert('Redirecting to Zoom scheduling...\n\nIn production, this would open Calendly or similar booking link.');
+                    }
+                }, 2000);
+            }, 1500);
+        }
+
+        // Tier 2 Runner Service Submission
+        function submitTier2Request(event) {
+            event.preventDefault();
+            
+            if (!document.getElementById('selected-courier').value) {
+                alert('Please select a courier option before submitting.');
+                return;
+            }
+            
+            // Collect form data
+            const formData = {
+                name: document.getElementById('t2-name').value,
+                phone: document.getElementById('t2-phone').value,
+                email: document.getElementById('t2-email').value,
+                items: document.getElementById('t2-items').value,
+                budget: document.getElementById('t2-budget').value,
+                timeline: document.getElementById('t2-timeline').value,
+                location: document.getElementById('t2-location').value,
+                courier: document.getElementById('selected-courier').value
+            };
+            
+            console.log('Tier 2 Request:', formData);
+            
+            // Show success message
+            document.getElementById('t2-success').classList.add('show');
+            
+            // In production, this would integrate with CRM (HubSpot/Mailchimp)
+            alert('Runner service request submitted!\n\nWe\'ll send you a detailed quote within 24 hours.\n\n[CRM Integration: Data sent to HubSpot/Mailchimp]');
+            
+            // Reset form
+            event.target.reset();
+            document.querySelectorAll('.courier-option').forEach(opt => opt.classList.remove('selected'));
+        }
+
+        // Tier 3 Form Display
+        function showWigForm() {
+            document.getElementById('wig-form').style.display = 'block';
+            document.getElementById('shein-form').style.display = 'none';
+            window.scrollTo({ top: document.getElementById('wig-form').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        function showSheinForm() {
+            document.getElementById('shein-form').style.display = 'block';
+            document.getElementById('wig-form').style.display = 'none';
+            window.scrollTo({ top: document.getElementById('shein-form').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        // Wig Calculator
+        function calculateWigTotal() {
+            const budget = parseFloat(document.getElementById('wig-budget').value) || 0;
+            const commissionLow = budget * 0.15;
+            const commissionHigh = budget * 0.25;
+            
+            document.getElementById('wig-product-cost').textContent = `R${budget.toFixed(2)}`;
+            document.getElementById('wig-commission').textContent = `R${commissionLow.toFixed(2)} - R${commissionHigh.toFixed(2)}`;
+            
+            // Estimate total (using mid-range commission and average courier)
+            const avgCommission = (commissionLow + commissionHigh) / 2;
+            const estimatedTotal = budget + avgCommission + 90; // Average courier ~R90
+            document.getElementById('wig-total').textContent = `R${estimatedTotal.toFixed(2)}`;
+        }
+
+        // Wig Request Submission
+        function submitWigRequest(event) {
+            event.preventDefault();
+            
+            if (!document.getElementById('wig-selected-courier').value) {
+                alert('Please select a courier option before submitting.');
+                return;
+            }
+            
+            const formData = {
+                name: document.getElementById('wig-name').value,
+                phone: document.getElementById('wig-phone').value,
+                email: document.getElementById('wig-email').value,
+                type: document.getElementById('wig-type').value,
+                length: document.getElementById('wig-length').value,
+                texture: document.getElementById('wig-texture').value,
+                budget: document.getElementById('wig-budget').value,
+                preferences: document.getElementById('wig-preferences').value,
+                location: document.getElementById('wig-location').value,
+                courier: document.getElementById('wig-selected-courier').value
+            };
+            
+            console.log('Wig Request:', formData);
+            
+            document.getElementById('wig-success').classList.add('show');
+            
+            alert('Wig sourcing request submitted!\n\nWe\'ll send you options and exact pricing within 48 hours.\n\n[CRM Integration: High-value lead tracked]');
+            
+            event.target.reset();
+            document.querySelectorAll('.courier-option').forEach(opt => opt.classList.remove('selected'));
+        }
+
+        // SHEIN Fee Calculator
+        function calculateSheinFee() {
+            const budget = document.getElementById('shein-budget').value;
+            const feeElement = document.getElementById('shein-service-fee');
+            const deliverablesElement = document.getElementById('shein-deliverables');
+            
+            if (budget === 'under1500') {
+                feeElement.textContent = 'R100';
+                deliverablesElement.innerHTML = `
+                    <li>10-15 curated SHEIN items</li>
+                    <li>Size recommendations</li>
+                    <li>Quality indicators (review-based)</li>
+                    <li>Basic styling notes</li>
+                `;
+            } else if (budget === 'over1500') {
+                feeElement.textContent = 'R250';
+                deliverablesElement.innerHTML = `
+                    <li>20-30 curated SHEIN items</li>
+                    <li>Detailed size recommendations</li>
+                    <li>Quality indicators (review-based)</li>
+                    <li>Mix-and-match outfit combinations</li>
+                    <li>Styling guide with photos</li>
+                    <li>Priority service</li>
+                `;
+            }
+        }
+
+        // SHEIN Request Submission
+        function submitSheinRequest(event) {
+            event.preventDefault();
+            
+            if (!document.getElementById('shein-selected-courier').value) {
+                alert('Please select a courier option before submitting.');
+                return;
+            }
+            
+            const formData = {
+                name: document.getElementById('shein-name').value,
+                phone: document.getElementById('shein-phone').value,
+                email: document.getElementById('shein-email').value,
+                budget: document.getElementById('shein-budget').value,
+                size: document.getElementById('shein-size').value,
+                style: document.getElementById('shein-style').value,
+                occasion: document.getElementById('shein-occasion').value,
+                timeline: document.getElementById('shein-timeline').value,
+                location: document.getElementById('shein-location').value,
+                courier: document.getElementById('shein-selected-courier').value
+            };
+            
+            console.log('SHEIN Request:', formData);
+            
+            document.getElementById('shein-success').classList.add('show');
+            
+            alert('SHEIN Navigator request submitted!\n\nWe\'ll send your curated selections within your selected timeline.\n\n[CRM Integration: Customer journey tracked]');
+            
+            event.target.reset();
+            document.querySelectorAll('.courier-option').forEach(opt => opt.classList.remove('selected'));
+        }
+
+        // Tier 4 Service Info Update
+        function updateTier4Info() {
+            const service = document.getElementById('t4-service').value;
+            const inclusionsElement = document.getElementById('t4-inclusions');
+            const eventSpecific = document.getElementById('event-specific');
+            const tripSpecific = document.getElementById('trip-specific');
+            
+            // Hide all specific fields first
+            eventSpecific.style.display = 'none';
+            tripSpecific.style.display = 'none';
+            
+            if (service === 'wardrobe') {
+                inclusionsElement.innerHTML = `
+                    <li>In-depth style consultation (virtual or in-person)</li>
+                    <li>Complete wardrobe audit</li>
+                    <li>Gap analysis and shopping list</li>
+                    <li>Strategic shopping across multiple stores</li>
+                    <li>Styling session showing how to wear new pieces</li>
+                    <li>Digital lookbook with outfit combinations</li>
+                    <li>15-20% commission on purchases</li>
+                `;
+            } else if (service === 'event') {
+                eventSpecific.style.display = 'block';
+                inclusionsElement.innerHTML = `
+                    <li>Event-specific style consultation</li>
+                    <li>Complete outfit sourcing (clothing, shoes, accessories)</li>
+                    <li>Fitting coordination and alterations management</li>
+                    <li>Day-of styling support (if needed, additional fee)</li>
+                    <li>Hair and makeup artist recommendations</li>
+                    <li>Photography styling tips</li>
+                    <li>Custom pricing based on event scope</li>
+                `;
+            } else if (service === 'trip') {
+                tripSpecific.style.display = 'block';
+                inclusionsElement.innerHTML = `
+                    <li>Destination and activity analysis</li>
+                    <li>Capsule wardrobe creation (15-20 pieces → 30+ outfits)</li>
+                    <li>Source missing essentials if needed</li>
+                    <li>Detailed packing guide with outfit combinations</li>
+                    <li>Weather-appropriate recommendations</li>
+                    <li>Packing tips and space optimization</li>
+                    <li>Digital lookbook for easy reference while traveling</li>
+                `;
+            }
+        }
+
+        // Tier 4 Request Submission
+        function submitTier4Request(event) {
+            event.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('t4-name').value,
+                phone: document.getElementById('t4-phone').value,
+                email: document.getElementById('t4-email').value,
+                service: document.getElementById('t4-service').value,
+                budget: document.getElementById('t4-budget').value,
+                timeline: document.getElementById('t4-timeline').value,
+                location: document.getElementById('t4-location').value,
+                goals: document.getElementById('t4-goals').value,
+                meeting: document.getElementById('t4-meeting').value
+            };
+            
+            // Add service-specific data
+            if (formData.service === 'event') {
+                formData.eventType = document.getElementById('t4-event-type').value;
+                formData.eventDate = document.getElementById('t4-event-date').value;
+            } else if (formData.service === 'trip') {
+                formData.destination = document.getElementById('t4-destination').value;
+                formData.duration = document.getElementById('t4-duration').value;
+            }
+            
+            console.log('Tier 4 Request:', formData);
+            
+            document.getElementById('t4-success').classList.add('show');
+            
+            // Show calendly section after short delay
+            setTimeout(() => {
+                document.getElementById('calendly-section').style.display = 'block';
+                window.scrollTo({ top: document.getElementById('calendly-section').offsetTop - 100, behavior: 'smooth' });
+            }, 2000);
+            
+            alert('Premium service quote requested!\n\nRedirecting to schedule your consultation...\n\n[CRM Integration: High-value lead, CLV tracking initiated]\n[Calendar Integration: Calendly with SADC timezone support]');
+            
+            event.target.reset();
+        }
+
+        // Newsletter Subscription
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            
+            console.log('Newsletter subscription:', email);
+            
+            document.getElementById('newsletter-success').classList.add('show');
+            
+            alert('Newsletter subscription successful!\n\n[CRM Integration: Added to Mailchimp/HubSpot list]\n[Automation: Welcome email sequence triggered]');
+            
+            event.target.reset();
+            
+            setTimeout(() => {
+                document.getElementById('newsletter-success').classList.remove('show');
+            }, 5000);
+        }
+
+        // Contact Form Submission
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('contact-name').value,
+                email: document.getElementById('contact-email').value,
+                phone: document.getElementById('contact-phone').value,
+                service: document.getElementById('contact-service').value,
+                budget: document.getElementById('contact-budget').value,
+                location: document.getElementById('contact-location').value,
+                message: document.getElementById('contact-message').value
+            };
+            
+            console.log('Contact Form:', formData);
+            
+            document.getElementById('contact-success').classList.add('show');
+            
+            alert('Inquiry submitted successfully!\n\nWe\'ll respond within 24 hours on business days.\n\n[CRM Integration: Lead captured and routed based on service type]');
+            
+            event.target.reset();
+            
+            setTimeout(() => {
+                document.getElementById('contact-success').classList.remove('show');
+            }, 5000);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('WDYBI Personal Shopping Website Loaded');
+            console.log('Ready for integration with:');
+            console.log('- Payment: PayFast / Stripe');
+            console.log('- CRM: HubSpot / Mailchimp');
+            console.log('- Calendar: Calendly');
+            console.log('- Analytics: Google Analytics / Facebook Pixel');
+        });
+    </script>
+</body>
+</html>
